@@ -1,0 +1,16 @@
+CREATE TABLE orders (
+order_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+user_id INTEGER NOT NULL,
+symbol TEXT NOT NULL,
+shares integer NOT NULL,
+price NUMERIC NOT NULL,
+transacted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+For summary page. Need to return symbol and total shares
+SELECT symbol,SUM(shares) FROM orders WHERE user_id=8 GROUP BY symbol;
+
+Query all stock that a user own
+SELECT DISTINCT symbol FROM orders WHERE user_id=8;
